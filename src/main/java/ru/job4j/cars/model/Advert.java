@@ -1,6 +1,7 @@
 package ru.job4j.cars.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +11,7 @@ public class Advert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private Date created;
     private String carBrand;
     private String description;
     private boolean sold;
@@ -26,6 +28,7 @@ public class Advert {
 
     public Advert(String carBrand, String description, boolean sold,
                   User author, BodyType bodyType, String photoPath) {
+        this.created = new Date(System.currentTimeMillis());
         this.carBrand = carBrand;
         this.description = description;
         this.sold = sold;
