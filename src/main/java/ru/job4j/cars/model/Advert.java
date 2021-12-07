@@ -4,37 +4,40 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Класс реализует объект - объявление
+ *
+ * @author ikioresko
+ * @version 0.1
+ */
 @Entity
-@Table(name = "adverts")
-
 public class Advert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    private String carBrand;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "category_id")
+    private Category category;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "model_id")
+    private Model model;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "body_id")
+    private Body body;
     private String description;
+    private int price;
     private boolean sold;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "author_id")
     private User author;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "bodyType_id")
-    private BodyType bodyType;
     private String photoPath;
 
     public Advert() {
-    }
-
-    public Advert(String carBrand, String description, boolean sold,
-                  User author, BodyType bodyType, String photoPath) {
-        this.created = new Date(System.currentTimeMillis());
-        this.carBrand = carBrand;
-        this.description = description;
-        this.sold = sold;
-        this.author = author;
-        this.bodyType = bodyType;
-        this.photoPath = photoPath;
     }
 
     public int getId() {
@@ -45,12 +48,44 @@ public class Advert {
         this.id = id;
     }
 
-    public String getCarBrand() {
-        return carBrand;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
     }
 
     public String getDescription() {
@@ -59,6 +94,14 @@ public class Advert {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public boolean isSold() {
@@ -75,14 +118,6 @@ public class Advert {
 
     public void setAuthor(User author) {
         this.author = author;
-    }
-
-    public BodyType getBodyType() {
-        return bodyType;
-    }
-
-    public void setBodyType(BodyType bodyType) {
-        this.bodyType = bodyType;
     }
 
     public String getPhotoPath() {
@@ -114,9 +149,15 @@ public class Advert {
     public String toString() {
         return "Advert{"
                 + "id=" + id
-                + ", carBrand='" + carBrand + '\''
+                + ", created=" + created
+                + ", category=" + category
+                + ", brand=" + brand
+                + ", model=" + model
+                + ", body=" + body
                 + ", description='" + description + '\''
+                + ", price=" + price
                 + ", sold=" + sold
+                + ", author=" + author
                 + ", photoPath='" + photoPath + '\''
                 + '}';
     }

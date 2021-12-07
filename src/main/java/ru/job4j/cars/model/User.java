@@ -5,24 +5,29 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Класс реализует объект - пользователя
+ *
+ * @author ikioresko
+ * @version 0.1
+ */
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String username;
     private String email;
     private String password;
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "author")
-    @JoinColumn()
     private Set<Advert> advertsList = new HashSet<>();
 
     public User() {
     }
 
-    public User(String name, String email, String password) {
-        this.name = name;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -40,12 +45,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getEmail() {
@@ -93,7 +98,7 @@ public class User {
     public String toString() {
         return "User{"
                 + "id=" + id
-                + ", name='" + name + '\''
+                + ", name='" + username + '\''
                 + ", email='" + email + '\''
                 + ", password='" + password + '\''
                 + '}';

@@ -3,19 +3,24 @@ package ru.job4j.cars.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Класс реализует объект - тип кузова
+ *
+ * @author ikioresko
+ * @version 0.1
+ */
 @Entity
-@Table(name = "bodytypes")
-public class BodyType {
+public class Body {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nameType;
+    private String name;
 
-    public BodyType() {
+    public Body() {
     }
 
-    public BodyType(String nameType) {
-        this.nameType = nameType;
+    public Body(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -26,12 +31,12 @@ public class BodyType {
         this.id = id;
     }
 
-    public String getNameType() {
-        return nameType;
+    public String getName() {
+        return name;
     }
 
-    public void setNameType(String nameType) {
-        this.nameType = nameType;
+    public void setName(String nameType) {
+        this.name = nameType;
     }
 
     @Override
@@ -42,8 +47,8 @@ public class BodyType {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BodyType bodyType = (BodyType) o;
-        return id == bodyType.id;
+        Body body = (Body) o;
+        return id == body.id;
     }
 
     @Override
@@ -55,7 +60,7 @@ public class BodyType {
     public String toString() {
         return "BodyType{"
                 + "id=" + id
-                + ", nameType='" + nameType + '\''
+                + ", nameType='" + name + '\''
                 + '}';
     }
 }
