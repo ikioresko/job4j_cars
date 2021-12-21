@@ -1,16 +1,16 @@
 package ru.job4j.cars.service;
 
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.repository.AdvertRepo;
+import ru.job4j.cars.repository.UserRepo;
 
 /**
  * Класс является сервисным слоем для работы с объектами User
  *
  * @author ikioresko
- * @version 0.1
+ * @version 0.2
  */
 public class UserService {
-    private final AdvertRepo repo = new AdvertRepo();
+    private final UserRepo repo = new UserRepo();
 
     public User getUserByUsername(String name) {
         return repo.getUserByUsername(name);
