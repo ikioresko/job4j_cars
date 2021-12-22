@@ -11,7 +11,7 @@ import java.util.List;
  * @version 0.1
  */
 public class BodyRepo {
-    private final TransactionManager manager = new TransactionManager().getInstance();
+    private final TransactionManager manager = TransactionManager.getInstance();
 
     public List<Body> getAllBody() {
         return manager.tx(session -> session.createQuery("from Body").list());

@@ -41,7 +41,7 @@ public class TransactionManager {
         return rsl;
     }
 
-    protected TransactionManager getInstance() {
+    protected static TransactionManager getInstance() {
         return INSTANCE;
     }
 }

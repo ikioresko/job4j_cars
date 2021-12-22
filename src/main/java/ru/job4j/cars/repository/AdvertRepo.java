@@ -14,7 +14,7 @@ import java.util.List;
  * @version 0.2
  */
 public class AdvertRepo {
-    private final TransactionManager manager = new TransactionManager().getInstance();
+    private final TransactionManager manager = TransactionManager.getInstance();
 
     private Date getLastDay() {
         Date d = new Date(System.currentTimeMillis());

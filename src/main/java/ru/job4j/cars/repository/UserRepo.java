@@ -9,7 +9,7 @@ import ru.job4j.cars.model.User;
  * @version 0.1
  */
 public class UserRepo {
-    private final TransactionManager manager = new TransactionManager().getInstance();
+    private final TransactionManager manager = TransactionManager.getInstance();
 
     public User getAuthorByID(int id) {
         return (User) manager.tx(session ->

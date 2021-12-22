@@ -11,7 +11,7 @@ import java.util.List;
  * @version 0.1
  */
 public class ModelRepo {
-    private final TransactionManager manager = new TransactionManager().getInstance();
+    private final TransactionManager manager = TransactionManager.getInstance();
 
     public Model getModelByID(int id) {
         return (Model) manager.tx(session -> session.createQuery("from Model where id = :ID")

@@ -11,7 +11,7 @@ import java.util.List;
  * @version 0.1
  */
 public class BrandRepo {
-    private final TransactionManager manager = new TransactionManager().getInstance();
+    private final TransactionManager manager = TransactionManager.getInstance();
 
     public List<Brand> getAllBrand() {
         return manager.tx(session -> session.createQuery(
